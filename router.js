@@ -21,6 +21,23 @@ router.post('/', (req, res, next) => {
     .catch(next);
 })
 
+router.put('/:id', (req, res, next) => {
+  Doggo.update(req.body, {
+    where: { id: req.params.id } 
+  })
+    .then( thing => console.log('thing') )
+})
+
+router.delete('/:id', (req, res, next) => {
+  Doggo.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(res.sendStatus(200))
+    .catch(next);
+})
+
 
 
 module.exports = router;
