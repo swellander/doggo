@@ -25,7 +25,9 @@ router.put('/:id', (req, res, next) => {
   Doggo.update(req.body, {
     where: { id: req.params.id } 
   })
-  .catch(next);
+  //have to send something back as a response, otherwise promise will not resolve
+    .then(() => res.sendStatus(200))
+    .catch(next);
 })
 
 router.delete('/:id', (req, res, next) => {

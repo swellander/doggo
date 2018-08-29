@@ -18,6 +18,7 @@ export default class Main extends React.Component {
 
 
   componentDidMount() {
+    console.log('main component mounting');
     axios.get('/api/doggos')
       .then( ({ data }) => this.setState({ doggos: data }))
       .catch(err => console.log(err))
@@ -46,10 +47,11 @@ export default class Main extends React.Component {
       .catch(err => console.log(err))
   }
 
-  updateDoggo(e, doggo, id) {
+  async updateDoggo(e, doggo, id) {
     e.preventDefault();
-    axios.put(`/api/doggos/${id}`, doggo)
-      .then(() => console.log('hey'))
+    console.log('first')
+    await axios.put(`/api/doggos/${id}`, doggo)
+    this.componentDidMount();
   }
 
   render() {
