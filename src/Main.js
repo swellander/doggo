@@ -32,12 +32,17 @@ export default class Main extends React.Component {
 
   createDoggo(e, doggo) {
     e.preventDefault();
-    axios.post('/api/doggos', doggo)
+    axios('https://dog.ceo/api/breeds/image/random')
+      .then( ({data}) => doggo.imgUrl = data.message)
+      .then(() => console.log(doggo))
+      .then(() => axios.post('/api/doggos', doggo)
       .then(response => response.data)
       .then( doggo => {
         console.log(this.state);
         this.setState({ doggos: [ ...this.state.doggos, doggo] })
-      })
+      }))
+    
+      .catch(err => console.log(err))
       .catch(err => console.log(err))
   }
 

@@ -3,21 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default class Doggo extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
-      url: ''
-    }
-  }
-
-  componentDidMount() {
-    axios('https://dog.ceo/api/breeds/image/random')
-      .then( ({data}) => this.setState({url: data.message}))
-      .catch(err => console.log(err))
-  }
-
-  
-  
   render() {
     const imgStyle = {
       width: '100%',
@@ -32,7 +17,7 @@ export default class Doggo extends React.Component {
     const { doggo, updateDoggo, deleteDoggo } = this.props;
     return (
       <div style={cardStyle} className="card">
-        <img style={imgStyle} className="card-img-top" src={this.state.url} alt={doggo.name} />
+        <img style={imgStyle} className="card-img-top" src={doggo.imgUrl} alt={doggo.name} />
         <div className="card-body">
           <h5 className="card-title">{doggo.name}</h5>
           <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
