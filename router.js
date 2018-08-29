@@ -25,7 +25,7 @@ router.put('/:id', (req, res, next) => {
   Doggo.update(req.body, {
     where: { id: req.params.id } 
   })
-    .then( thing => console.log('thing') )
+  .catch(next);
 })
 
 router.delete('/:id', (req, res, next) => {

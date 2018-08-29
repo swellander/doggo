@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
 export default class Update extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
       name: ''
@@ -19,16 +19,12 @@ export default class Update extends React.Component {
   }
 
   onSubmit(e) {
-    e.preventDefault();
-    const { id } = this.props;
-    axios.put(`/api/doggos/${id}`, this.state)
-      .then(response => response.data)
-      .catch(err => console.log(err))
+    this.props.update(e, this.state, this.props.id);
     //redirect to home page
     this.setState({redirect: true})
   }
 
-
+  
 
   render() {
     if(this.state.redirect) return <Redirect push to="/" />
