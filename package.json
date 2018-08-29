@@ -7,6 +7,7 @@
     "test": "nodemon node_modules/mocha/bin/mocha",
     "webpack": "./node_modules/webpack/bin/webpack.js",
     "start:dev": "npm run webpack -- --watch --mode=development & DATABASE_URL=postgres://localhost/kennel nodemon server.js --ignore src/ --ignore dist"
+    "start": "npm run webpack -- --mode=production & node server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
